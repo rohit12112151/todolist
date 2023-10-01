@@ -19,14 +19,12 @@ app.use(cors())
 
 //db config
 mongoose.connect(process.env.MONGO_URI, {
-    useNewUrlParser: true,
-}, (err) => {
-    if (err) {
-        console.log(err)
-    } else {
-        console.log("DB Connected")
-    }
+    useNewUrlParser: true, 
+    useUnifiedTopology: true,
+    family: 4,
 })
+.then(db => console.log('DB is connected'))
+.catch(err => console.log(err));
 
 //api endpoints
 app.use("/api/user", userRouter)
